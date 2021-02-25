@@ -1,21 +1,23 @@
-package lxLog
+package main
 
 import (
-	log "github.com/ichunt2019/lxLog/lib"
+	xlog "github.com/ichunt2019/lxLog/log"
 	"time"
 )
 
 func main(){
-	log.Init()
-	Instance("sku").Info("111111111111111111111")
-	Instance("sku").Warn("111111111111111111111")
-	Instance("sku").Error("111111111111111111111")
+	xlog.Init("./logs/","sku","spu")
 
 
-	Instance("spu").Info("111111111111111111111")
-	Instance("spu").Warn("111111111111111111111")
-	Instance("spu").Error("111111111111111111111")
+	xlog.Instance("sku").Info("111111111111111111111")
+	xlog.Instance("sku").Warn("111111111111111111111")
+	xlog.Instance("sku").Error("111111111111111111111")
+
+	xlog.Instance("spu").Info("111111111111111111111")
+	xlog.Instance("spu").Warn("111111111111111111111")
+	xlog.Instance("spu").Error("111111111111111111111")
 
 
 	time.Sleep(100*time.Second)
+
 }

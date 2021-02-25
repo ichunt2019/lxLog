@@ -1,7 +1,6 @@
 package log
 
 import (
-	"fmt"
 	"path"
 )
 
@@ -34,15 +33,9 @@ func createLogs(logPath string,wfLogPath string,subdirectories string){
 
 func Init(logRootDIR string,subdirectories ...string){
 	for i:=0;i<len(subdirectories);i++{
-		logPath := path.Join(logRootDIR,subdirectories[i],"/nolog.log")
+		logPath := path.Join(logRootDIR,subdirectories[i],"/normal_log.log")
 		_subdirectories := subdirectories[i]
-		wflogPath := path.Join(logRootDIR,_subdirectories,"/wflog.log")
-		fmt.Println(logPath)
-		fmt.Println(wflogPath)
-		if len(subdirectories) == 2 {
-			logPath = subdirectories[0]
-			wflogPath = subdirectories[1]
-		}
+		wflogPath := path.Join(logRootDIR,_subdirectories,"/error_log.log")
 		createLogs(logPath,wflogPath,_subdirectories)
 	}
 }
