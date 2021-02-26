@@ -24,6 +24,17 @@ func main(){
 		xlog.Instance("sku").Info(fmt.Sprintf("%s",err))
 	}
 
+	for{
+		xlog.Instance("sku").Info("111111111111111111111")
+		xlog.Instance("sku").Warn("111111111111111111111")
+		xlog.Instance("sku").Error("111111111111111111111")
+
+		xlog.Instance("spu").Info("111111111111111111111")
+		xlog.Instance("spu").Warn("111111111111111111111")
+		xlog.Instance("spu").Error("111111111111111111111")
+		time.Sleep(100*time.Millisecond)
+	}
+
 	time.Sleep(100*time.Second)
 
 }
