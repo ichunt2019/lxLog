@@ -15,9 +15,11 @@ func createLogs(logPath string,wfLogPath string,subdirectories string){
 		FW: ConfFileWriter{
 			On:true,
 			LogPath:logPath,
-			RotateLogPath:logPath,
+			//RotateLogPath:logPath,
+			RotateLogPath:logPath+".%Y%M%D",
 			WfLogPath:wfLogPath,
-			RotateWfLogPath:wfLogPath,
+			//RotateWfLogPath:wfLogPath,
+			RotateWfLogPath:wfLogPath+".%Y%M%D",
 		},
 		CW: ConfConsoleWriter{
 			On:true,

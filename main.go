@@ -1,47 +1,38 @@
 package main
 
 import (
-	"errors"
-	"fmt"
-	xlog "github.com/ichunt2019/lxLog/log"
+	 . "github.com/ichunt2019/lxLog/log"
 	"time"
 )
 
-func main(){
-	xlog.Init("./logs/","sku","spu")
 
 
-	xlog.Instance("sku").Info("111111111111111111111")
-	xlog.Instance("sku").Warn("111111111111111111111")
-	xlog.Instance("sku").Error("111111111111111111111")
+//测试日志实例打点
+func main (){
+	Init("./logs/","sku","spu")
 
-	xlog.Instance("spu").Info("111111111111111111111")
-	xlog.Instance("spu").Warn("111111111111111111111")
-	xlog.Instance("spu").Error("111111111111111111111")
 
-	err := test()
-	if err != nil{
-		xlog.Instance("sku").Info(fmt.Sprintf("%s",err))
-	}
+	Instance("sku").Info("111111111111111111111")
+	Instance("sku").Warn("111111111111111111111")
+	Instance("sku").Error("111111111111111111111")
 
-	for{
-		xlog.Instance("sku").Info("111111111111111111111")
-		xlog.Instance("sku").Warn("111111111111111111111")
-		xlog.Instance("sku").Error("111111111111111111111")
 
-		xlog.Instance("spu").Info("111111111111111111111")
-		xlog.Instance("spu").Warn("111111111111111111111")
-		xlog.Instance("spu").Error("111111111111111111111")
+	Instance("spu").Info("111111111111111111111")
+	Instance("spu").Warn("111111111111111111111")
+	Instance("spu").Error("111111111111111111111")
+
+	for {
+		Instance("sku").Info("111111111111111111111")
+		Instance("sku").Warn("111111111111111111111")
+		Instance("sku").Error("111111111111111111111")
+
+
+		Instance("spu").Info("111111111111111111111")
+		Instance("spu").Warn("111111111111111111111")
+		Instance("spu").Error("111111111111111111111")
 		time.Sleep(100*time.Millisecond)
 	}
 
+
 	time.Sleep(100*time.Second)
-
-}
-
-
-
-func test() (err error){
-	xlog.Instance("sku").Info("666")
-	return errors.New("错误")
 }
