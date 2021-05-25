@@ -16,10 +16,10 @@ func createLogs(logPath string,wfLogPath string,subdirectories string){
 			On:true,
 			LogPath:logPath,
 			//RotateLogPath:logPath,
-			RotateLogPath:logPath+".%Y%M%D",
+			RotateLogPath:logPath+".%Y%M%D%H%m",
 			WfLogPath:wfLogPath,
 			//RotateWfLogPath:wfLogPath,
-			RotateWfLogPath:wfLogPath+".%Y%M%D",
+			RotateWfLogPath:wfLogPath+".%Y%M%D%H%m",
 		},
 		CW: ConfConsoleWriter{
 			On:true,
@@ -35,9 +35,9 @@ func createLogs(logPath string,wfLogPath string,subdirectories string){
 
 func Init(logRootDIR string,subdirectories ...string){
 	for i:=0;i<len(subdirectories);i++{
-		logPath := path.Join(logRootDIR,subdirectories[i],"/normal_log.log")
+		logPath := path.Join(logRootDIR,subdirectories[i],"/access.log")
 		_subdirectories := subdirectories[i]
-		wflogPath := path.Join(logRootDIR,_subdirectories,"/error_log.log")
+		wflogPath := path.Join(logRootDIR,_subdirectories,"/error.log")
 		createLogs(logPath,wflogPath,_subdirectories)
 	}
 }
