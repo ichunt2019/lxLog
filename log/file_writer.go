@@ -120,21 +120,40 @@ func (w *FileWriter) CreateLogFile() error {
 	return nil
 }
 
+func pathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
 func (w *FileWriter) Rotate() error {
 
-	now := time.Now()
-	v := 0
+	//now := time.Now()
+	//v := 0
 	rotate := false
 	old_variables := make([]interface{}, len(w.variables))
 	copy(old_variables, w.variables)
 
-	for i, act := range w.actions {
-		v = act(&now)
-		if v != w.variables[i] {
-			w.variables[i] = v
-			rotate = true
-		}
+	//for i, act := range w.actions {
+	//	v = act(&now)
+	//	if v != w.variables[i] {
+	//		w.variables[i] = v
+	//		rotate = true
+	//	}
+	//}
+
+	filePath := fmt.Sprintf(w.pathFmt, old_variables...)
+	//fmt.Println("filePath",filePath)
+	isExistsPath,_ := pathExists(filePath)
+	if isExistsPath == false{
+		rotate = true
 	}
+
 	//fmt.Printf("%v\n", w.variables)
 
 	if rotate == false {
@@ -149,7 +168,7 @@ func (w *FileWriter) Rotate() error {
 
 	if w.file != nil {
 		// 将文件以pattern形式改名并关闭
-		filePath := fmt.Sprintf(w.pathFmt, old_variables...)
+		//filePath := fmt.Sprintf(w.pathFmt, old_variables...)
 
 		if err := os.Rename(w.filename, filePath); err != nil {
 			return err
