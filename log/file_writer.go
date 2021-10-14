@@ -170,13 +170,16 @@ func (w *FileWriter) Rotate() error {
 		// 将文件以pattern形式改名并关闭
 		//filePath := fmt.Sprintf(w.pathFmt, old_variables...)
 
-		if err := os.Rename(w.filename, filePath); err != nil {
-			return err
-		}
 
 		if err := w.file.Close(); err != nil {
 			return err
 		}
+
+		if err := os.Rename(w.filename, filePath); err != nil {
+			return err
+		}
+
+
 	}
 
 	return w.CreateLogFile()
