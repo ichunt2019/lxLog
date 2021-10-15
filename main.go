@@ -30,9 +30,11 @@ func main (){
 		Instance("spu").Info("787878787878787878787878")
 		Instance("spu").Warn("89898989898989898989898989898989")
 		Instance("spu").Error("90909090909090909090909090909090")
-		time.Sleep(time.Second*10)
+		time.Sleep(time.Second*3)
 	}
 
 
-	time.Sleep(100*time.Second)
+	for{
+		time.Sleep(time.Second)
+	}
 }

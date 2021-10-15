@@ -187,7 +187,7 @@ func boostrapLogWriter(logger *Logger) {
 	}
 
 	flushTimer := time.NewTimer(time.Millisecond * 500)
-	rotateTimer := time.NewTimer(time.Second * 1800)
+	rotateTimer := time.NewTimer(time.Second * 10)
 
 	for {
 		select {
@@ -222,7 +222,7 @@ func boostrapLogWriter(logger *Logger) {
 					}
 				}
 			}
-			rotateTimer.Reset(time.Second * 1800)
+			rotateTimer.Reset(time.Second * 10)
 		}
 	}
 }
