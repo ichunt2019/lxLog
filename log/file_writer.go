@@ -132,7 +132,6 @@ func pathExists(path string) (bool, error) {
 }
 
 func (w *FileWriter) Rotate() error {
-
 	//now := time.Now()
 	//v := 0
 	rotate := false
@@ -172,16 +171,17 @@ func (w *FileWriter) Rotate() error {
 
 
 		if err := w.file.Close(); err != nil {
+			fmt.Println(err)
 			return err
 		}
 
 		if err := os.Rename(w.filename, filePath); err != nil {
+			fmt.Println(err)
 			return err
 		}
 
 
 	}
-
 	return w.CreateLogFile()
 }
 
